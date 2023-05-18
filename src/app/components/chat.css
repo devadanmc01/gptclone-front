@@ -203,11 +203,11 @@
 
 .message-form input[type="text"] {
   flex-grow: 1;
-  font-size: 16px;
-  padding-bottom: 10px;
-  border: none;
-  border-radius: 4px;
-}
+  font-size: 14px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  }
 
 .message-form button {
   font-size: 16px;
@@ -316,7 +316,10 @@
     background: #fff;
     bottom: 0;
     left: 0;
-    padding: 1rem 0.5rem 0;
+    padding: 10px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
     position: fixed;
     width: 100%;
   }
