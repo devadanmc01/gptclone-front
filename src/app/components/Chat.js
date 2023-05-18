@@ -4,13 +4,25 @@ import io from "socket.io-client";
 import "./chat.css";
 import Image from "next/image";
 import avatar from "../assets/avatar.png";
-const socket = io.connect("https://chatgptclone-test.onrender.com");
+const socket = io.connect("http://localhost:8080");
+
+
 
 const Chat = () => {
+  const [roomId,setRoomId]= useState("")
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const messageRef = useRef();
   const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const userId = "12345"; // El ID del usuario actual
+    socket.emit("join", userId);
+    },[])
+    useEffect(() => {
+      socket.on("roomJoined",(roomId)=>{
+        setRoomId(roomId)
+      })
+    },[])
   useEffect(() => {
     socket.on("message", (message) => {
       setMessages((messages) => [...messages, message]);
@@ -47,9 +59,9 @@ const Chat = () => {
 
   const handleMessageSubmit = (event) => {
     event.preventDefault();
-
-    if (message) {
-      socket.emit("message", message);
+console.log(roomId)
+    if (message && roomId) {
+      socket.emit("message", { roomId: roomId, message: message });
       setMessage("");
       setMessages([
         {
