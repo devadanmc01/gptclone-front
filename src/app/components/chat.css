@@ -161,12 +161,18 @@
 
 .content-msg {
   padding: 0.5rem;
-  background-color: #b9b9b911;
+  background-color: #d3e4fa69;
   border-radius: 12px;
   font-size: 0.9em;
   line-height: 1.6em;
 }
-
+.content-msg-you {
+  padding: 0.5rem;
+  background-color: #b8bfbd56;
+  border-radius: 12px;
+  font-size: 0.9em;
+  line-height: 1.6em;
+}
 .message-list {
   flex-grow: 1;
   list-style-type: none;
