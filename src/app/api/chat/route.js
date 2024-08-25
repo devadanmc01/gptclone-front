@@ -3,7 +3,7 @@ import { streamText, convertToCoreMessages } from 'ai';
 import { prompts, convertTemplateLiteralToString } from '../../lib/prompstFile';
 // Create an OpenAI API client
 const openai = createOpenAI({
-  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY,
   compatibility: 'strict',
 });
 const systemInstructions = convertTemplateLiteralToString(prompts.fitTrainer);

@@ -105,7 +105,7 @@ const Chat = () => {
         <div className="chat-inner">
           <div className="chat-header"></div>
           <ul className="messages">{renderMessage(messages)}</ul>
-          {isLoading === true ? renderLoadingDots() : null}
+          {/*isLoading === true ? renderLoadingDots() : null*/}
           <form className="message-form" onSubmit={handleSubmit}>
             <input
               type="text"
