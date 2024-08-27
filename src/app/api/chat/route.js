@@ -21,7 +21,6 @@ export async function POST(req) {
     frequency_penalty: 1,
     presence_penalty: 1,
   });
-
   // Respond with the stream
   return response.toDataStreamResponse();
 }

@@ -1,15 +1,21 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import './chat.css';
 import Image from 'next/image';
 import avatar from '../assets/avatar.png';
 import { useChat } from 'ai/react';
+import { faSave } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import SavePopup from './SavePopup';
+
+// En el componente
 
 const Chat = () => {
   const { isLoading, messages, input, handleInputChange, handleSubmit } =
     useChat({
       api: '/api/chat',
     });
+  const [dataToSave, setDataToSave] = useState();
   const renderLoadingDots = () => {
     return (
       <div className="messages message-assistant">
@@ -37,7 +43,18 @@ const Chat = () => {
   const handleMessageChange = (event) => {
     setMessage(event.target.value);
   };
+  const [showPopup, setShowPopup] = useState(false);
+  const openPopup = async (e) => {
+    const data = await e.currentTarget.textContent;
+    console.log(data);
+    setDataToSave(data);
+    setShowPopup(true);
+  };
+  const closePopup = () => {
+    setShowPopup(false);
+  };
   const renderMessage = (messages) => {
+    console.log(messages);
     return messages?.map((message) => {
       if (message?.role === 'assistant') {
         return (
@@ -53,9 +70,18 @@ const Chat = () => {
             </div>
             <div className="inner">
               <div className="content-msg">
+                <FontAwesomeIcon
+                  title={message?.content}
+                  icon={faSave}
+                  className="save-icon"
+                  onClick={openPopup}
+                />
                 <p>{message?.content}</p>
               </div>
             </div>
+            {showPopup && (
+              <SavePopup setShowPopup={setShowPopup} message={dataToSave} />
+            )}
           </div>
         );
       } else {
@@ -94,12 +120,19 @@ const Chat = () => {
         </div>
         <div className="bio">
           <p>Soy un asistente virtual impulsado por inteligencia artificial.</p>
-          <p>
-            Puedo ayudarte a escribir, traducir y corregir textos , entre muchas
-            otras cosas mas.
-          </p>
-          <p>Para iniciar, solo preguntame algo.</p>
         </div>
+        <div>
+          - Rutinas
+          <br />
+          - Recetas
+          <br />
+          - Consejos
+          <br />- Seguimiento
+        </div>
+        {/* -guardar conversaciones > subdividir en categoritas ej: rutinas,dietas,recetas,consejos
+            - vista de conversaciones por categoria
+            - seguimiento de avances > form para recolectar nombre, edad, peso y subir una foto 
+        */}
       </div>
       <div className="chat-right">
         <div className="chat-inner">

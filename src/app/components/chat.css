@@ -207,13 +207,13 @@
   padding-bottom: 40px;
 }
 
-.message-form input[type="text"] {
+.message-form input[type='text'] {
   flex-grow: 1;
   font-size: 14px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 3px;
-  }
+}
 
 .message-form button {
   font-size: 16px;
@@ -323,9 +323,9 @@
     bottom: 0;
     left: 0;
     padding: 10px;
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
     position: fixed;
     width: 100%;
   }
@@ -342,7 +342,7 @@
     padding: 1.5rem 3rem;
     width: 250px;
   }
-  .picture{
+  .picture {
     align-items: center;
     background-color: #f1eeee;
     border-radius: 100%;
@@ -352,4 +352,17 @@
     margin-right: 1.5rem;
     width: 70px;
   }
+}
+
+.save-icon {
+  position: relative;
+  top: 0px;
+  right: -713px;
+  color: #515150eb;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.save-icon:hover {
+  color: #0056b3;
 }
